@@ -10,14 +10,14 @@ public class CameraFollow : MonoBehaviour
     {
         if (playerTransform == null)
         {
-            Debug.LogWarning("Player transform not assigned to CameraFollow script.");
+            Debug.LogWarning("Player cannot found!");
             return;
         }
 
-        // Calculate the desired camera position
+        
         Vector3 desiredPosition = playerTransform.position + offset;
 
-        // Smoothly move the camera towards the desired position
+ 
         transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothness * Time.deltaTime);
     }
 
