@@ -8,11 +8,16 @@ public class EnemyHealth : MonoBehaviour
 
     [SerializeField] Animator animator;
 
+    GameObject enemySpawner;
+
     public static bool isDead = false;
+
 
     private void Start()
     {
         currentHealth = maxHealth;
+
+        enemySpawner = GameObject.Find("EnemySpawner");
     }
 
     public void TakeDamage(int damageAmount)
@@ -36,7 +41,7 @@ public class EnemyHealth : MonoBehaviour
     {
         gameObject.layer = 0;
         animator.SetBool("isDeath", true);
-        EnemySpawner.enemiesSpawned -= 1;
+        enemySpawner.GetComponent<Spawner>().spawnedPrefab -= 1;
         StartCoroutine(DieCoroutine());
     }
 }
