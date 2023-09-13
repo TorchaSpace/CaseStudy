@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] private string playerTag = "Player"; 
+    [SerializeField] private string playerTag = "Player";
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private float attackRangeSquared = 100f;
-    [SerializeField] private Animator _animator;
+    [SerializeField] private Animator animator;
 
     private Transform playerTransform;
+    private bool playerInRange = false;
 
     private void Start()
     {
@@ -37,6 +38,16 @@ public class EnemyAI : MonoBehaviour
         if (distanceToPlayerSquared >= attackRangeSquared)
         {
             FollowPlayer();
+            playerInRange = false;
+        }
+        else
+        {
+            if (!playerInRange)
+            {
+                StopMoving();
+                ChangeAnimationState("isStopped");
+                playerInRange = true;
+            }
         }
     }
 
@@ -58,5 +69,15 @@ public class EnemyAI : MonoBehaviour
             Vector3 moveDirection = directionToPlayer.normalized;
             transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
         }
+    }
+
+    private void StopMoving()
+    {
+        moveSpeed = 0;
+    }
+
+    private void ChangeAnimationState(string newState)
+    {
+        animator.SetBool(newState, true);
     }
 }

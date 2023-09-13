@@ -1188,7 +1188,7 @@ MonoBehaviour:
   moveSpeed: 5
   rotationSpeed: 5
   attackRangeSquared: 100
-  _animator: {fileID: -6145362024978783986}
+  animator: {fileID: -6145362024978783986}
 --- !u!95 &-6145362024978783986
 Animator:
   serializedVersion: 5
