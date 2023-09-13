@@ -36,7 +36,7 @@ public class EnemyHealth : MonoBehaviour
     {
         gameObject.layer = 0;
         animator.SetBool("isDeath", true);
-        EnemySpawner.enemiesSpawned--;
+        EnemySpawner.enemiesSpawned -= 1;
         StartCoroutine(DieCoroutine());
     }
 }

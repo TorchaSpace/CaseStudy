@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Slider healthBar;
+    [SerializeField] private EnemySpawner enemySpawner;
 
     private void Start()
     {
@@ -29,11 +30,14 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth > 0)
         {
             currentHealth -= damageAmount;
-            healthBar.value = currentHealth;
+            
             if (currentHealth <= 0)
             {
                 Die();
+                enemySpawner.StopSpawning();
             }
+
+            healthBar.value = currentHealth;
         }
     }
 

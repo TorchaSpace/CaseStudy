@@ -5,7 +5,7 @@ public class EnemyShoot : MonoBehaviour
     [Header("Shooting Settings")]
     public string firePointName = "FirePoint";
     public string projectilePrefabPath = "Projectiles/ProjectilePrefab";
-    public float projectileSpeed = 10f;
+    public float projectileSpeed = 30f;
 
     private Transform firePoint;
     private GameObject projectilePrefab;
@@ -57,6 +57,6 @@ public class EnemyShoot : MonoBehaviour
             rb.velocity = throwDirection * projectileSpeed;
         }
 
-        Destroy(projectile, 10f);
+        Destroy(projectile, 5f);
     }
 }
