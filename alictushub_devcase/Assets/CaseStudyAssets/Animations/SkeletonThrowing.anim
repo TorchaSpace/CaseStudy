@@ -44579,10 +44579,11 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.6666666
+  - time: 1.8333334
     functionName: Throw
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: ec13ba3cb98614c10a504fef763ea55e,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
