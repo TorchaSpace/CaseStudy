@@ -7,13 +7,15 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnRadius = 10f;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private float spawnDelay = 3f;
-    [SerializeField] private static int spawnedEnemy = 0;
+    [SerializeField] private int maxEnemiesToSpawn = 10;
+
+    public static int enemiesSpawned = 0;
 
     private void Start()
     {
         if (playerTransform == null)
         {
-            Debug.LogError("Player cannot found!");
+            Debug.LogError("Player cannot be found!");
             return;
         }
 
@@ -22,19 +24,21 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemiesWithDelay()
     {
-        while (true)
+        while (enemiesSpawned < maxEnemiesToSpawn)
         {
-            if(spawnedEnemy < 10)
+            yield return new WaitForSeconds(spawnDelay);
+
+            Vector3 randomSpawnPosition = playerTransform.position + Random.insideUnitSphere * spawnRadius;
+            randomSpawnPosition.y = 0f;
+
+            Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
+
+            enemiesSpawned++;
+
+            if (enemiesSpawned >= maxEnemiesToSpawn)
             {
-                yield return new WaitForSeconds(spawnDelay);
-
-                Vector3 randomSpawnPosition = playerTransform.position + Random.insideUnitSphere * spawnRadius;
-
-                randomSpawnPosition.y = 0f;
-
-                Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
-
-                spawnedEnemy++;
+                Debug.Log("Maximum number of enemies spawned.");
+                break; // Exit the loop.
             }
         }
     }

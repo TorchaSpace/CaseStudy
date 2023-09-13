@@ -11,6 +11,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float _speed;
 
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
+
     private void FixedUpdate()
     {
         float horizontalInput = _joystick.Horizontal;
