@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnRadius = 10f;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private float spawnDelay = 3f;
+    [SerializeField] private static int spawnedEnemy = 0;
 
     private void Start()
     {
@@ -23,13 +24,18 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(spawnDelay);
-            
-            Vector3 randomSpawnPosition = playerTransform.position + Random.insideUnitSphere * spawnRadius;
-            
-            randomSpawnPosition.y = 0f;
+            if(spawnedEnemy < 10)
+            {
+                yield return new WaitForSeconds(spawnDelay);
 
-            Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
+                Vector3 randomSpawnPosition = playerTransform.position + Random.insideUnitSphere * spawnRadius;
+
+                randomSpawnPosition.y = 0f;
+
+                Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
+
+                spawnedEnemy++;
+            }
         }
     }
 }
