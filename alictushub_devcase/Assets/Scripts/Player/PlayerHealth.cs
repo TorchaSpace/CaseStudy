@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Slider healthBar;
+    [SerializeField] private GameObject gameOverScreen;
 
     private void Start()
     {
@@ -39,8 +41,12 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void Die()
+    async private void Die()
     {
         animator.SetBool("isDeath", true);
+        await Task.Delay(1000);
+        gameOverScreen.SetActive(true);
+        await Task.Delay(2000);
+        Time.timeScale = 0;
     }
 }

@@ -27,6 +27,6 @@ public class Notation : MonoBehaviour
             num++;
             value /= 1000d;
         }
-        return value.ToString("F1") + nFormat[num];
+        return value + nFormat[num];
     }
 }

@@ -8,7 +8,8 @@ public class EnemyHealth : MonoBehaviour
 
     [SerializeField] Animator animator;
 
-    GameObject enemySpawner;
+    private GameObject enemySpawner;
+    private GameObject stats;
 
     public static bool isDead = false;
 
@@ -18,6 +19,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
 
         enemySpawner = GameObject.Find("EnemySpawner");
+        stats = GameObject.Find("Stats");
     }
 
     public void TakeDamage(int damageAmount)
@@ -33,7 +35,7 @@ public class EnemyHealth : MonoBehaviour
     private IEnumerator DieCoroutine()
     {      
         yield return new WaitForSeconds(1.2f);
-
+        stats.GetComponent<Stats>().AddKill(1);
         Destroy(gameObject);
     }
 

@@ -1,14 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-[System.Serializable]
-public class Stats 
+public class Stats : MonoBehaviour
 {
-    public double coinValue;
+    [SerializeField] private double coinValue;
+    [SerializeField] private double killCount;
 
-    public void AddCoins(double value)
+    [SerializeField] private TextMeshProUGUI coinText;
+    [SerializeField] private TextMeshProUGUI killCountText;
+
+    public void AddCoin(double value)
     {
         coinValue += value;
+        coinText.text = Notation.Double2dec(coinValue);
+    }
+
+    public void AddKill(double value)
+    {
+        killCount += value;
+        killCountText.text = Notation.Double2dec(killCount);
     }
 }
