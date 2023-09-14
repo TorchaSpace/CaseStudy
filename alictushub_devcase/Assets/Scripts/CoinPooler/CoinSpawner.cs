@@ -28,7 +28,7 @@ public class CoinSpawner : MonoBehaviour
 
             float randomAngle = Random.Range(0f, 360f);
 
-            Vector3 spawnPosition = (playerTransform.position + new Vector3(0f, 3f, 0f)) +
+            Vector3 spawnPosition = playerTransform.position + new Vector3(0f, 2f, 0f) +
                 Quaternion.Euler(0f, randomAngle, 0f) * Vector3.forward * randomDistance;
 
             CoinCollisionHandler coin = cp.GetObject();
