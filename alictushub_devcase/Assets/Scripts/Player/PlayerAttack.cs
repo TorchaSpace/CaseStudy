@@ -2,16 +2,15 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public Transform projectilePrefab;
+    public ProjectileController projectilePrefab;
     public Transform shootingPoint;
     public float attackRange = 10f;
     public float projectileSpeed = 10f;
     public float fireRate = 1f; 
-    public string enemyTag = "Enemy"; 
 
     private float lastFireTime;
 
-    void Update()
+    void FixedUpdate()
     {
         Collider[] enemies = Physics.OverlapSphere(transform.position, attackRange, LayerMask.GetMask("Enemy"));
 
@@ -49,13 +48,15 @@ public class PlayerAttack : MonoBehaviour
         return nearestEnemy;
     }
 
+    
+
     private void Shoot(Transform target)
     {
-        Transform newProjectile = Instantiate(projectilePrefab, shootingPoint.position, Quaternion.identity);
-        Vector3 shootDirection = (target.position - transform.position).normalized;
-        newProjectile.GetComponent<Rigidbody>().velocity = shootDirection * projectileSpeed;
+        Vector3 playerFront = ((target.position + transform.position) * 1 / 4) - new Vector3(0f,0f,.2f);
+        Vector3 enemyFront = ((target.position + transform.position)*3/4) + new Vector3(0f, 0f, .2f);
+        
 
-        ProjectileCollisionHandler collisionHandler = newProjectile.gameObject.AddComponent<ProjectileCollisionHandler>();
-        collisionHandler.enemyTag = enemyTag;
+        ProjectileController newProjectile = Instantiate(projectilePrefab, shootingPoint.position, Quaternion.identity);
+        newProjectile.StartMove(shootingPoint.position, target.position, playerFront, enemyFront);
     }
 }

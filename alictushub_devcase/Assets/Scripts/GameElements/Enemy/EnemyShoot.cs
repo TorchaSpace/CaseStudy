@@ -4,11 +4,10 @@ public class EnemyShoot : MonoBehaviour
 {
     [Header("Shooting Settings")]
     public string firePointName = "FirePoint";
-    public string projectilePrefabPath = "Projectiles/ProjectilePrefab";
     public float projectileSpeed = 30f;
 
     private Transform firePoint;
-    private GameObject projectilePrefab;
+    public GameObject projectilePrefab;
     private Transform player;
 
     private void Start()
@@ -29,15 +28,6 @@ public class EnemyShoot : MonoBehaviour
             Debug.LogError("FirePoint not found with tag: " + firePointName);
             enabled = false;
         }
-
-        GameObject loadedProjectilePrefab = Resources.Load<GameObject>(projectilePrefabPath);
-        if (loadedProjectilePrefab == null)
-        {
-            Debug.LogError("ProjectilePrefab not found at path: " + projectilePrefabPath);
-            enabled = false;
-        }
-
-        projectilePrefab = loadedProjectilePrefab;
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }

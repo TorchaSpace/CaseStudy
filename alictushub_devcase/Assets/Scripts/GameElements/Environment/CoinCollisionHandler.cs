@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CoinCollisionHandler : MonoBehaviour
 {
-    private GameObject coinSpawner;
+    public Action<CoinCollisionHandler> onCoinCollected;
+
     private GameObject stats;
 
     private void Start()
     {
-        coinSpawner = GameObject.Find("CoinSpawner");
         stats = GameObject.Find("Stats");
     }
 
@@ -18,8 +19,8 @@ public class CoinCollisionHandler : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             stats.GetComponent<Stats>().AddCoin(100);
-            coinSpawner.GetComponent<Spawner>().spawnedPrefab -= 1;
-            Destroy(gameObject);
+
+            onCoinCollected.Invoke(this);
         }
     }
 }

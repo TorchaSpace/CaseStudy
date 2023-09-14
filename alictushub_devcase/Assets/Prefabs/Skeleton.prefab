@@ -1229,6 +1229,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   animator: {fileID: -6145362024978783986}
+  enemySpawner: {fileID: 0}
 --- !u!114 &3069486554893211992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,6 +1245,8 @@ MonoBehaviour:
   firePointName: FirePoint
   projectilePrefabPath: Projectiles/ProjectilePrefab
   projectileSpeed: 10
+  projectilePrefab: {fileID: 6628812256076637323, guid: 4df7cbf24d85f4014ba831c619e607d6,
+    type: 3}
 --- !u!1 &7357605367150733102
 GameObject:
   m_ObjectHideFlags: 0

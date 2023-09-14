@@ -8,11 +8,16 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float attackRangeSquared = 100f;
     [SerializeField] private Animator animator;
 
+    private float currentSpeed = 5;
+
     private Transform playerTransform;
     private bool playerInRange = false;
 
-    private void Start()
+    private void OnEnable()
     {
+        gameObject.layer = 6;
+
+        StartMoving();
         GameObject player = GameObject.FindGameObjectWithTag(playerTag);
         if (player != null)
         {
@@ -22,6 +27,13 @@ public class EnemyAI : MonoBehaviour
         {
             Debug.LogWarning("Player with tag '" + playerTag + "' not found.");
         }
+
+        
+    }
+
+    private void OnDisable()
+    {
+        playerInRange = false;
     }
 
     private void Update()
@@ -67,13 +79,18 @@ public class EnemyAI : MonoBehaviour
         {
             Vector3 directionToPlayer = playerTransform.position - transform.position;
             Vector3 moveDirection = directionToPlayer.normalized;
-            transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
+            transform.Translate(moveDirection * currentSpeed * Time.deltaTime, Space.World);
         }
     }
 
     private void StopMoving()
     {
-        moveSpeed = 0;
+        currentSpeed = 0;
+    }
+
+    void StartMoving()
+    {
+        currentSpeed = moveSpeed;
     }
 
     private void ChangeAnimationState(string newState)

@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        Time.timeScale = 1;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -23,6 +24,14 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(100);
             playerController._speed = 0;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("EnemyProjectile"))
+        {
+            TakeDamage(25);
         }
     }
 
@@ -47,6 +56,5 @@ public class PlayerHealth : MonoBehaviour
         await Task.Delay(1000);
         gameOverScreen.SetActive(true);
         await Task.Delay(2000);
-        Time.timeScale = 0;
     }
 }

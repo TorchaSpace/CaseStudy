@@ -1,24 +1,23 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public Action<EnemyHealth> onEnemyDied;
+
     public int maxHealth = 100;
     public int currentHealth;
 
     [SerializeField] Animator animator;
 
-    private GameObject enemySpawner;
     private GameObject stats;
 
     public static bool isDead = false;
 
-
-    private void Start()
+    private void OnEnable()
     {
         currentHealth = maxHealth;
-
-        enemySpawner = GameObject.Find("EnemySpawner");
         stats = GameObject.Find("Stats");
     }
 
@@ -36,14 +35,14 @@ public class EnemyHealth : MonoBehaviour
     {      
         yield return new WaitForSeconds(1.2f);
         stats.GetComponent<Stats>().AddKill(1);
-        Destroy(gameObject);
+
+        onEnemyDied.Invoke(this);
     }
 
     private void Die()
     {
         gameObject.layer = 0;
         animator.SetBool("isDeath", true);
-        enemySpawner.GetComponent<Spawner>().spawnedPrefab -= 1;
         StartCoroutine(DieCoroutine());
     }
 }

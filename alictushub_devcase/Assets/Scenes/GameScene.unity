@@ -1095,7 +1095,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 934399931}
-  - component: {fileID: 934399930}
+  - component: {fileID: 934399932}
   m_Layer: 0
   m_Name: CoinSpawner
   m_TagString: Untagged
@@ -1103,25 +1103,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &934399930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 934399929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c36aecb9b3d840eab08276bf6b1cca0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 6909280541081556780, guid: 6ebe7ebf2263144cc9d0e5f3532777e5, type: 3}
-  playerTransform: {fileID: 577980557}
-  minSpawnDistance: 30
-  maxSpawnDistance: 40
-  spawnDelay: 0.5
-  maxPrefab: 50
-  spawnedPrefab: 0
 --- !u!4 &934399931
 Transform:
   m_ObjectHideFlags: 0
@@ -1137,6 +1118,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &934399932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934399929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d407ba59920e465dbfbd8782fdad333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1277145961921356650, guid: 6ebe7ebf2263144cc9d0e5f3532777e5, type: 3}
+  playerTransform: {fileID: 1510354998}
+  minSpawnDistance: 30
+  maxSpawnDistance: 40
+  spawnDelay: 0.5
+  maxPrefab: 50
+  spawnedPrefab: 0
 --- !u!1 &948344030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,7 +1376,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1239947959}
-  - component: {fileID: 1239947960}
+  - component: {fileID: 1239947961}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -1399,7 +1399,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1239947960
+--- !u!114 &1239947961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1408,15 +1408,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1239947957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c36aecb9b3d840eab08276bf6b1cca0, type: 3}
+  m_Script: {fileID: 11500000, guid: a7ace354e112b4711b41b48817395f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7340619264818611317, guid: b0c5c034a11d44adaa22216bad313669, type: 3}
+  prefab: {fileID: 2065397984219520384, guid: b0c5c034a11d44adaa22216bad313669, type: 3}
   playerTransform: {fileID: 1510354998}
   minSpawnDistance: 30
   maxSpawnDistance: 40
   spawnDelay: 2
-  maxPrefab: 10
+  maxPrefab: 1
   spawnedPrefab: 0
 --- !u!1 &1249593768
 GameObject:
@@ -1876,13 +1876,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3319e1b3a8a645328a86064e46b1a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6471591378387213602, guid: 8d9d0aff3e2974c759df51e379e79e95,
+  projectilePrefab: {fileID: 5326419812635981339, guid: 8d9d0aff3e2974c759df51e379e79e95,
     type: 3}
   shootingPoint: {fileID: 577980557}
   attackRange: 8.2
   projectileSpeed: 20
   fireRate: 2
-  enemyTag: Enemy
 --- !u!1 &1527008434
 GameObject:
   m_ObjectHideFlags: 0
