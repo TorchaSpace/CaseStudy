@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             TakeDamage(100);
-            playerController.enabled = false;
+            playerController._speed = 0;
         }
     }
 
